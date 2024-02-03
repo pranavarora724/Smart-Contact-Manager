@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"
+ xmlns:th="http://www.thymeleaf.org"
+ th:replace="~{user/base::layout(~{::section})}"
+>
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>              
+		<section>
+	      <div class="card" style="margin: 10px;">
+			
+			<div class="card-body">
+				
+				<h2 class="text-center">Your Contacts</h2>
+					
+					<!--Displain Alert Message-->
+								
+					<div th:if="${session.message}"
+					th:classappend="${'alert-'+session.message.type}"
+					 class="alert" role="alert">
+                          <span th:text="${session.message.content}"></span>
+                     </div>
+                     
+                     <!--Removing Alert Message-->
+                       <th:block th:text="${@sessionHelper.removeSessionAttribute}"></th:block>
+
+				
+				<div class="container-fluid ">
+					
+					<div class="row">
+						
+						<div class="col-md-10 offset-md-1">
+							
+							<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+	  
+    <tr th:each="c :${contacts}">
+      <th scope="row"><span th:text="${c.cid}"></span></th>
+      
+                         <!--SHOWING CONTACT IMAGE-->
+      <td>
+		  <img class="contact_img" src="" th:src="@{'/img/' + ${c.image}}" alt="profile photo"/>
+		   
+		  <a href="#" th:href="@{'/user/showIndividual/'+ ${c.cid}}"> <span th:text="${c.name}"></span> </a> 
+		  
+      </td>
+      
+      <td th:text="${c.email}"></td>
+      <td th:text="${c.phone}"></td>
+      
+      <td>
+		  <a th:href="@{'/user/edit-contact/'+${c.cid}}" class="btn btn-primary">Edit</a>
+		  <a th:href="@{'/user/delete-contact/'+${c.cid}}" class="btn btn-danger">Delete</a>
+	  </td>
+    </tr>
+  
+  </tbody>
+</table>
+
+                                  <!--PAGINATION BEGINS-->
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+	  
+	                                 <!--Previous Page-->
+    <li th:if="${currentPage != 0}" class="page-item">
+		<a class="page-link" th:href=" '/user/show-contacts/'+${currentPage-1}" href="#">Previous</a>
+	</li>
+    
+    
+                                          <!--Page Number-->
+    <li 
+    th:each="i :${#numbers.sequence(1 , totalPages)}"
+    th:classappend=" ${i-1==currentPage?'active':''}" 
+    class="page-item">
+    <a class="page-link" th:href=" '/user/show-contacts/' + ${i-1}" href="#"> <span th:text="${i}"></span> </a>
+    </li>
+    
+                                         <!--Next Page-->
+    <li 
+    th:if="${currentPage+1 != totalPages}" class="page-item">
+    <a class="page-link" th:href=" '/user/show-contacts/' +${currentPage+1}" href="#">Next</a>
+    </li>
+  
+  </ul>
+</nav>
+
+                          <!--pagination ends-->
+							
+							</div>
+							</div>
+							</div>
+							
+							</div>
+							</div>
+
+	    </section>	
+		
+</body>
+</html>

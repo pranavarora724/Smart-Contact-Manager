@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en"
+ xmlns:th="http://www.thymeleaf.org"
+ th:replace="~{user/base::layout(~{::section})}"
+>
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	
+
+		<section>
+			
+			<div class="card"  style="width: 80%; margin: auto;"  th:if="${contact}">
+				
+				<div class="card-body text-center" >
+				<img  class="individual_contact_photo" src="" th:src="'/img/'+ ${contact.image}" alt="profile photo" />
+				
+				<h1 class="text-center"> <span th:text=" ${contact.name} "></span> </h1>
+				
+				<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col"> <span th:text="${contact.cid}"></span> </th>
+     
+    </tr>
+  </thead>
+  
+  <tbody>
+	  
+       <tr>
+      <th scope="row"> Name </th>
+      <td> <span th:text="${contact.name}"></span> </td>
+      </tr>
+      
+       <tr>
+      <th scope="row"> Email </th>
+      <td> <span th:text="${contact.email}"></span> </td>
+      </tr>
+      
+       <tr>
+      <th scope="row"> Work </th>
+      <td> <span th:text="${contact.work}"></span> </td>
+      </tr>    
+  </tbody>
+  
+</table>
+
+            <p th:text="${contact.description}"> </p>
+
+          <a th:href="@{'/user/edit-contact/'+${contact.cid}}" class="btn btn-primary">Edit</a>
+		  <a th:href="@{'/user/delete-contact/'+${contact.cid}}" class="btn btn-danger">Delete</a>
+				
+			</div>
+			</div>
+			
+		<h2 th:unless="${contact}">You Dont have permission to access this contact</h2>
+			
+	    </section>
+
+	
+		
+</body>
+</html>

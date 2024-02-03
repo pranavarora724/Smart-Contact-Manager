@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en"
+ xmlns:th="http://www.thymeleaf.org"
+ th:replace="~{base::layout(~{::section})}"
+>
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+
+<section>
+
+<div class="container ">
+	<div class="row">
+		<div class="col-md-8 offset md-2">
+			<div class="mycard">
+				
+				<h2>Register Here !!</h2>
+				
+				<!--<div  th:if="${session.message}" th:classappend="${session.message.type}" class="alert " role="alert">
+                    <span th:text="${session.message.content}"></span>
+                    
+                    <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    
+                      </div>-->
+				
+				
+				<form th:action="@{/doregister}" method="post" th:object="${result}">
+					
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Name</label>
+    <input type="text" 
+    class="form-control"
+     id="name"
+        name="name"
+     required 
+     th:value="${result.name}"
+     aria-describedby="emailHelp">
+  </div>
+  
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" 
+    class="form-control"
+      name="email"
+
+     id="email"
+     required
+     th:value="${result.email}"
+      aria-describedby="emailHelp">
+  </div>
+  
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" 
+    class="form-control"
+     name="password"
+
+    required
+     id="password">
+  </div>
+  
+  
+  <div class="form-group">
+	  
+	  <textarea  id="" rows="10" class="form-control" placeholder="Enter Something" ></textarea>
+	  
+  </div>
+  
+  <div class="mb-3 form-check">
+    <input type="checkbox" 
+    class="form-check-input" 
+    id="exampleCheck1"
+    name="agree"
+    required
+    >
+    <label class="form-check-label" for="exampleCheck1">Terms and conditions</label>
+  </div>
+  
+  <div  class="mt-2">
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="reset" class="btn btn-primary">Reset</button>
+  </div>
+</form>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>
+	
+	</section>
+	
+</body>
+</html>

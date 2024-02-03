@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en"
+ xmlns:th="http://www.thymeleaf.org"
+ th:replace="~{user/base::layout(~{::section})}"
+>
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	
+
+		<section>
+			
+				<div class="card" style="margin: 10px;">
+			
+			<div class="card-body">
+				
+				<h2 class="text-center">Edit Contact</h2>
+				
+				<div class="card-body text-center" >
+				<img  class="individual_contact_photo" src="" th:src="'/img/'+ ${contact.image}" alt="profile photo" />
+				
+				     				
+				</div>
+				
+				<div class="container-fluid ">
+					
+					<div class="row">
+						
+						<div class="col-md-10 offset-md-1">
+							
+							
+						
+							<form action=""
+							th:action="@{'/user/submitEditContact/'+${contact.cid}}"
+							th:object="${contact}"             
+							enctype="multipart/form-data"
+							method="post"
+							>
+							
+							                               <!--CONTACT IMAGE-->
+                    <div style="margin:10px;" class="custom-file">
+						<p>Select New Photo</p>
+	                  <input type="file" name="profileImage"/>
+                      </div>
+
+							
+							<!--NAME FIELD-->
+
+<div class="input-group" style="margin: 10px;">
+	<div class="input-group-prepend">
+		<div class="input-group-text" style="margin-right: 10px;">
+		
+		<div>	Name  </div>	
+				
+		</div>
+	</div>
+	<input type="text" name="name" th:value="${contact.name}" class="form-control"/>
+</div>
+
+                          <!--NICK NAME FIELD-->							
+					
+<div class="input-group" style="margin: 10px;">
+	<div class="input-group-prepend">
+		<div class="input-group-text" style="margin-right: 10px;">
+			 
+			 <div mt-1>	Nickname  </div>
+		</div>
+	</div>
+	<input type="text" name="secondname" th:value="${contact.secondname}" class="form-control"/>
+</div>							
+
+                                <!--PHONE NUMBER FILED-->
+
+<div class="input-group" style="margin: 10px;">
+	<div class="input-group-prepend">
+		<div class="input-group-text" style="margin-right: 10px;">
+			 
+			 <div mt-1>	Phone </div>
+		</div>
+	</div>
+	<input type="text" name="phone" th:value="${contact.phone}" class="form-control"/>
+</div>
+
+
+                                        <!--EMAIL FIELD-->
+
+<div class="input-group" style="margin: 10px;">
+	<div class="input-group-prepend">
+		<div class="input-group-text" style="margin-right: 10px;">
+			 
+			 <div mt-1>	 Email </div>
+		</div>
+	</div>
+	<input type="email" name="email" th:value="${contact.email}" class="form-control"/>
+</div>
+
+
+                                     <!--WORK FIELD-->
+<div class="input-group" style="margin: 10px;">
+	<div class="input-group-prepend">
+		<div class="input-group-text" style="margin-right: 10px;">
+			 
+			 <div mt-1>	Work </div>
+		</div>
+	</div>
+	<input type="text" name="work" th:value="${contact.work}" class="form-control"/>
+</div>
+
+                                   <!--TEXT AREA FIELD-->
+
+<div class="form-group mt-3" style="margin-left: 13px;">
+	
+	<textarea th:text="${contact.description}"  name="description" class="form-control" rows="10" ></textarea>
+	
+</div>
+
+
+<!--<textarea id="default" name="description"></textarea>-->
+
+
+    <div class="container text-center">
+		
+		<button class="btn btn-primary mt-2">Edit Contact</button>
+	</div>
+							
+  						
+												
+						</div> 
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div>
+			
+		</div>
+		
+
+			
+		</section>
+
+	
+		
+</body>
+</html>
